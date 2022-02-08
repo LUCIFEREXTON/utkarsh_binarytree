@@ -67,4 +67,15 @@ class Bst
     in_order(node.rchild)
     print "#{node.data}, "
   end
+
+  def search(value, node = @head)
+    unless node.nil?
+      return true if node.data == value
+
+      return search(value, node.lchild) if node.data > value
+
+      return search(value, node.rchild)
+    end
+    false
+  end
 end
