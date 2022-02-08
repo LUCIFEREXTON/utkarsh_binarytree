@@ -29,4 +29,18 @@ class Bst
       @n += 1
     end
   end
+
+  def max(node = self.head)
+    return nil if node.nil?
+    return node if node.rchild.nil?
+
+    max(node.rchild)
+  end
+
+  def min(node = self.head)
+    return nil if node.nil?
+    return node if node.lchild.nil?
+    
+    max(node.lchild)
+  end
 end
