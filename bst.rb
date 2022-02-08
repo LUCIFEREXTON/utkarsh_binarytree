@@ -30,17 +30,41 @@ class Bst
     end
   end
 
-  def max(node = self.head)
+  def max(node = @head)
     return nil if node.nil?
     return node if node.rchild.nil?
 
     max(node.rchild)
   end
 
-  def min(node = self.head)
+  def min(node = @head)
     return nil if node.nil?
     return node if node.lchild.nil?
-    
+
     max(node.lchild)
+  end
+
+  def in_order(node = @head)
+    return if node.nil?
+
+    in_order(node.lchild)
+    print "#{node.data}, "
+    in_order(node.rchild)
+  end
+
+  def pre_order(node = @head)
+    return if node.nil?
+
+    print "#{node.data}, "
+    in_order(node.lchild)
+    in_order(node.rchild)
+  end
+
+  def post_order(node = @head)
+    return if node.nil?
+
+    in_order(node.lchild)
+    in_order(node.rchild)
+    print "#{node.data}, "
   end
 end
