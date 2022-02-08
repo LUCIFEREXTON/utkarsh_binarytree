@@ -1,7 +1,8 @@
 require_relative './bst'
 # 1
 bstree = Bst.new
-bstree.insert('Hello', 'world', 'Yes')
+bstree.insert('Hello', 'world')
+bstree.insert('Yes')
 # 2
 print 'Minimum data: '
 puts bstree.min.data
@@ -20,5 +21,14 @@ puts 'After removing "Nothing"'
 puts bstree.in_order
 # 6
 bstree2 = Bst.new
+bstree2.load_bst_from_file('log.txt')
 bstree2.insert(50, 30, 20, 40, 70, 60, 80)
 bstree2.path_to_leaf_node
+
+# 7
+
+# 8
+bstree2.write_to_file('log.txt')
+# 9
+bstree3 = Bst.new
+bstree3.load_bst_from_file('log.txt')

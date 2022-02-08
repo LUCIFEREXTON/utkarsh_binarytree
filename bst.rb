@@ -80,7 +80,7 @@ class Bst
   end
 
   def remove(value, node = @head)
-    removeHelper(value, node)
+    remove_helper(value, node)
     @n -= 1
   end
 
@@ -98,6 +98,15 @@ class Bst
     queue.pop
   end
 
+  def write_to_file(name_of_file)
+    File.write(name_of_file, bst_to_arr.join("\n"), mode: 'w')
+  end
+
+  def load_bst_from_file(name_of_file)
+    arr = File.read(name_of_file).split
+    arr.each { |ele| insert(ele.to_i) }
+  end
+
   private
 
   # this helper method will avoid the multiple n decreses in recursion
@@ -105,13 +114,13 @@ class Bst
     return nil if node.nil?
 
     if node.data > value
-      node.lchild = removeHelper(value, node.lchild)
+      node.lchild = remove_helper(value, node.lchild)
     elsif node.data < value
-      node.rchild = removeHelper(value, node.rchild)
+      node.rchild = remove_helper(value, node.rchild)
     elsif !node.lchild.nil? && !node.rchild.nil?
       min_of_right = find_min(node.rchild)
       node.data = min_of_right.value
-      node.rchild = removeHelper(min_of_right.value, node.rchild)
+      node.rchild = remove_helper(min_of_right.value, node.rchild)
     elsif !node.lchild.nil?
       node = node.lchild
     elsif !node.rchild.nil?
@@ -120,5 +129,19 @@ class Bst
       node = nil
     end
     node
+  end
+
+  def bst_to_arr(node = @head)
+    arr = []
+    preorder(arr, node)
+    arr
+  end
+
+  def preorder(queue, node = @head)
+    return if node.nil?
+
+    queue.push(node.data)
+    preorder(queue, node.lchild)
+    preorder(queue, node.rchild)
   end
 end
