@@ -78,4 +78,34 @@ class Bst
     end
     false
   end
+
+  def remove(value, node = @head)
+    removeHelper(value, node)
+    @n -= 1
+  end
+
+  private
+
+  # this helper method will avoid the multiple n decreses in recursion
+  def removeHelper(value, node = @head)
+    return nil if node.nil?
+
+    if node.data > value
+      node.lchild = removeHelper(value, node.lchild)
+    elsif node.data < value
+      node.rchild = removeHelper(value, node.rchild)
+    elsif !node.lchild.nil? && !node.rchild.nil?
+      min_of_right = find_min(node.rchild)
+      node.data = min_of_right.value
+      node.rchild = removeHelper(min_of_right.value, node.rchild)
+    elsif !node.lchild.nil?
+      node = node.lchild
+    elsif !node.rchild.nil?
+      node = node.rchild
+    else
+      node = nil
+    end
+    node
+  end
+
 end
