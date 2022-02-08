@@ -1,5 +1,6 @@
 require_relative './node'
 
+# binary search tree
 class Bst
   attr_accessor :head, :n
 
@@ -9,7 +10,7 @@ class Bst
   end
 
   def insert(*d)
-    d.each{ |data| 
+    d.each do |data|
       if @head.nil?
         @head = Node.new(data)
       else
@@ -26,6 +27,6 @@ class Bst
         end
       end
       @n += 1
-    }
+    end
   end
 end
