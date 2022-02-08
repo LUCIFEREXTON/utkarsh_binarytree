@@ -18,3 +18,7 @@ puts bstree.in_order
 bstree.remove('Nothing')
 puts 'After removing "Nothing"'
 puts bstree.in_order
+# 6
+bstree2 = Bst.new
+bstree2.insert(50, 30, 20, 40, 70, 60, 80)
+bstree2.path_to_leaf_node

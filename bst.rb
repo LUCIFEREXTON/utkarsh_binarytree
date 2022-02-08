@@ -84,10 +84,24 @@ class Bst
     @n -= 1
   end
 
+  def path_to_leaf_node(node = @head, queue = [])
+    return if node.nil?
+
+    queue.push(node.data)
+    if node.lchild.nil? && node.rchild.nil?
+      print "\n =>"
+      queue.each { |nod| print "#{nod}->" }
+    else
+      path_to_leaf_node(node.lchild, queue)
+      path_to_leaf_node(node.rchild, queue)
+    end
+    queue.pop
+  end
+
   private
 
   # this helper method will avoid the multiple n decreses in recursion
-  def removeHelper(value, node = @head)
+  def remove_helper(value, node = @head)
     return nil if node.nil?
 
     if node.data > value
@@ -107,5 +121,4 @@ class Bst
     end
     node
   end
-
 end
