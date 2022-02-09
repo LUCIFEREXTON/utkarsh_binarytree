@@ -1,6 +1,6 @@
 require './node_data'
 # Binary Tree TreeNode
-class TreeTreeNode < TreeNodeData
+class TreeNode < NodeData
   attr_accessor :lchild, :rchild
 
   def initialize(data)
