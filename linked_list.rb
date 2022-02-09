@@ -55,4 +55,19 @@ class LinkedList
     end
     print "\n"
   end
+
+  def reverse(node = @head)
+    @head = reverse_helper(node)
+  end
+
+  private
+  
+  def reverse_helper(node = @head)
+    return node if node.nil? || node.next.nil?
+
+    rest = reverse_helper(node.next)
+    node.next.next = node
+    node.next = nil
+    rest
+  end
 end
