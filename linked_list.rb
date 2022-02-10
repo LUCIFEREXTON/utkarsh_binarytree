@@ -25,7 +25,6 @@ class LinkedList
   def search(value, node = @head)
     until node.nil?
       return true if node.data == value
-
       node = node.next
     end
     false
@@ -61,10 +60,9 @@ class LinkedList
   end
 
   private
-  
+
   def reverse_helper(node = @head)
     return node if node.nil? || node.next.nil?
-
     rest = reverse_helper(node.next)
     node.next.next = node
     node.next = nil

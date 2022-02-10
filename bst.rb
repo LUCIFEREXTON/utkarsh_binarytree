@@ -31,22 +31,19 @@ class Bst
   end
 
   def max(node = @head)
-    return nil if node.nil?
+    return if node.nil?
     return node if node.rchild.nil?
-
     max(node.rchild)
   end
 
   def min(node = @head)
-    return nil if node.nil?
+    return if node.nil?
     return node if node.lchild.nil?
-
     max(node.lchild)
   end
 
   def in_order(node = @head)
     return if node.nil?
-
     in_order(node.lchild)
     print "#{node.data}, "
     in_order(node.rchild)
@@ -54,7 +51,6 @@ class Bst
 
   def pre_order(node = @head)
     return if node.nil?
-
     print "#{node.data}, "
     in_order(node.lchild)
     in_order(node.rchild)
@@ -62,7 +58,6 @@ class Bst
 
   def post_order(node = @head)
     return if node.nil?
-
     in_order(node.lchild)
     in_order(node.rchild)
     print "#{node.data}, "
@@ -71,9 +66,7 @@ class Bst
   def search(value, node = @head)
     unless node.nil?
       return true if node.data == value
-
       return search(value, node.lchild) if node.data > value
-
       return search(value, node.rchild)
     end
     false
@@ -86,7 +79,6 @@ class Bst
 
   def path_to_leaf_node(node = @head, queue = [])
     return if node.nil?
-
     queue.push(node.data)
     if node.lchild.nil? && node.rchild.nil?
       print "\n =>"
@@ -111,8 +103,7 @@ class Bst
 
   # this helper method will avoid the multiple n decreses in recursion
   def remove_helper(value, node = @head)
-    return nil if node.nil?
-
+    return if node.nil?
     if node.data > value
       node.lchild = remove_helper(value, node.lchild)
     elsif node.data < value
@@ -139,7 +130,6 @@ class Bst
 
   def preorder(queue, node = @head)
     return if node.nil?
-
     queue.push(node.data)
     preorder(queue, node.lchild)
     preorder(queue, node.rchild)

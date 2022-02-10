@@ -1,5 +1,6 @@
 require './bst'
 require './linked_list'
+
 bstree = Bst.new
 ll = LinkedList.new
 while true
@@ -13,7 +14,6 @@ while true
   puts '|_______________________________________________|'
   c1 = gets.chomp
   return if c1 =="\e"
-
   case c1
   when '1'
     while true
@@ -32,7 +32,6 @@ while true
       puts '| <<|Previous Menu                              |'
       puts '|ESC| Exit                                      |'
       puts '|_______________________________________________|'
-
       c2 = gets.chomp
       case c2
       when '<<'
@@ -46,7 +45,6 @@ while true
           result = gets.chomp
           print "\n"
           break if result == "\e"
-
           begin
             result = Integer(result)
             bstree.insert(result)
@@ -79,7 +77,6 @@ while true
             result = gets.chomp
             print "\n"
             break if result == "\e"
-
             begin
               result = Integer(result)
               bstree.insert(result)
@@ -107,7 +104,6 @@ while true
       puts '| <<|Previous Menu                              |'
       puts '|ESC| Exit                                      |'
       puts '|_______________________________________________|'
-
       c2 = gets.chomp
       case c2
       when '<<'
@@ -121,7 +117,6 @@ while true
           result = gets.chomp
           print "\n"
           break if result == "\e"
-
           ll.insert(result)
         end
       when '2'
