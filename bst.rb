@@ -32,7 +32,7 @@ class Bst
 
   def max(node = @head)
     return if node.nil?
-    return node if node.rchild.nil?
+    return node if !node.rchild
     max(node.rchild)
   end
 
@@ -64,12 +64,10 @@ class Bst
   end
 
   def search(value, node = @head)
-    unless node.nil?
-      return true if node.data == value
-      return search(value, node.lchild) if node.data > value
-      return search(value, node.rchild)
-    end
-    false
+    return false if !node
+    return true if node.data == value
+    return search(value, node.lchild) if node.data > value
+    return search(value, node.rchild)
   end
 
   def remove(value, node = @head)

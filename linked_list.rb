@@ -23,7 +23,7 @@ class LinkedList
   end
 
   def search(value, node = @head)
-    until node.nil?
+    while node
       return true if node.data == value
       node = node.next
     end
@@ -32,13 +32,13 @@ class LinkedList
 
   def remove(value, node = @head)
     prev = nil
-    while !node.nil? && node.data != value
+    while node && node.data != value
       prev = node
       node = node.next
     end
     return if node.nil?
 
-    if !prev.nil?
+    if prev
       @tail = prev if @tail == node
       prev.next = node.next
     else
@@ -48,7 +48,7 @@ class LinkedList
   end
 
   def show(node = @head)
-    until node.nil?
+    while node
       print "#{node.data}-->"
       node = node.next
     end
@@ -62,7 +62,7 @@ class LinkedList
   private
 
   def reverse_helper(node = @head)
-    return node if node.nil? || node.next.nil?
+    return node if !node || !node.next
     rest = reverse_helper(node.next)
     node.next.next = node
     node.next = nil
